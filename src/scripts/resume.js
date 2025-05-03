@@ -4,7 +4,7 @@ export const resumeObj = {
   "phone": "(604)-506-6024",
   "email": "benvinnick@gmail.com",
   "links": {
-    "portfolio": "https://bonvee-99.github.io/portfolio/",
+		"portfolio": "https://benvinnick.com",
     "github": "https://github.com/bonvee-99",
     "linkedin": "https://www.linkedin.com/in/ben-vinnick-452312166/"
   },
@@ -78,10 +78,11 @@ export const resumeObj = {
   "education": {
     "school": "University of British Columbia",
     "location": "Vancouver, BC",
-    "degree": "Bachelor of Science, Computer Science",
+    "degree": "Bachelor of Computer Science",
+		"faculty": "Science",
     "startDate": "Sept 2019",
     "endDate": "April 2025",
-    "gpa": "3.9",
+    "gpa": "84%",
     "coursework": [
       "Intermediate Algorithm Design & Analysis",
       "Computer Hardware & Operating Systems",

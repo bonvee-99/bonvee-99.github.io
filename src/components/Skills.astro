@@ -1,0 +1,53 @@
+---
+const { skills } = Astro.props;
+---
+<section class="skills-container">
+  {
+    skills && Object.entries(skills).map(([key, value]) => (
+      <div>
+        <h2>{key}</h2>
+        <ul>
+          {
+            value.map((skill) => (
+              <li>{skill}</li>
+            ))
+          }
+        </ul>
+      </div>
+    ))
+  }
+</section>
+
+<style>
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.skills-container div {
+  width: 50%;
+}
+
+.skills-container h2 {
+  text-align: center;
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  color: #faf9f6;
+  background-color: #f2944b;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin-right: 4px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+</style>
