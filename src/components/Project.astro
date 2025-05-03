@@ -1,0 +1,54 @@
+---
+const { project } = Astro.props;
+
+const isGHLink = project.link.includes('github');
+
+import GithubIcon from './GithubIcon.astro';
+---
+<section>
+  {
+    !isGHLink ? (
+      <h2 class="web-link">
+	<a :href="project.link">{project.title}</a>
+      </h2>
+    ) : (
+      <h2>
+	{project.title}
+
+      </h2>
+
+    )
+  }
+  <span class="date">
+    {project.date}
+  </span>
+  <ul>
+    {
+      project.highlights.map((highlight) => (
+	<li>
+	  {highlight}
+	</li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+h2 {
+  margin-bottom: 0;
+}
+
+.date {
+  font-style: italic;
+  font-size: 14px;
+  color: #555452;
+}
+
+ul {
+  padding: 5px 15px 15px 15px;
+}
+
+.web-link > a:hover {
+  color: #f2944b;
+}
+</style>

@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Experience from '../components/Experience.astro';
+import Project from '../components/Project.astro';
+import Education from '../components/Education.astro';
+import Skills from '../components/Skills.astro';
 
 import { resumeObj } from '../scripts/resume.js';
 ---
@@ -17,15 +20,19 @@ import { resumeObj } from '../scripts/resume.js';
 		</div>
 		<h1>Projects</h1>
 		<div>
-			TODO
+			{
+				resumeObj.projects.map((proj) => (
+					<Project project={proj}/>
+				))
+			}
 		</div>
 		<h1>Education</h1>
 		<div>
-			TODO
+			<Education education={resumeObj.education}/>
 		</div>
 		<h1>Skills</h1>
 		<div>
-			TODO
+			<Skills skills={resumeObj.skills}/>
 		</div>
 	</div>
 </Layout>

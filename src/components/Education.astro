@@ -1,0 +1,32 @@
+---
+const { education } = Astro.props;
+---
+<section>
+  <h2>{education.degree}</h2>
+  <h5>@ {education.school}</h5>
+  <span class="date">{education.startDate + ' - ' + education.endDate + ' | ' + education.location}</span>
+  <h6>{"Faculty of " + education.faculty}</h6>
+  <h4>{"Cumulative average: " + education.gpa}</h4>
+</section>
+
+<style>
+h6 {
+  margin: 2px 0;
+}
+
+h5 {
+  margin: 0;
+}
+
+h4 {
+  margin: 4px 0;
+}
+
+h3 {
+  margin-bottom: 0;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+</style>
