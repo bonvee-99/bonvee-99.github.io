@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Experience from '../components/Experience.astro';
+
+import { resumeObj } from '../scripts/resume.js';
+---
+
+<Layout>
+	<div class="main-container">
+		<h1>Experience</h1>
+		<div>
+			{
+				resumeObj.workExperience.map((exp) => (
+					<Experience experience={exp}/>
+				))
+			}
+		</div>
+		<h1>Projects</h1>
+		<h1>Education</h1>
+		<h1>Skills</h1>
+	</div>
+</Layout>
+
+<style>
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $bg-color;
+
+  div {
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width:800px) {
+  .main-container {
+    div {
+      width: 40%;
+    }
+  }
+}
+</style>

@@ -1,19 +1,41 @@
 ---
-import colours from '../scripts/colours.js';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
 ---
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Ben Vinnick</title>
 	</head>
 	<body>
+		<Navigation />
+
 		<slot />
+		<Footer />
 	</body>
 </html>
 
 <style>
+body {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+	background-color: #FAF9F6;
+  color: #050609;
+}
+<!-- $terminal-font-size: 18px; -->
+<!-- $bg-color: #FAF9F6; -->
+<!-- $bg-nav: rgba(250, 249, 246, 0.9); -->
+<!-- $text-color: #050609; -->
+<!-- $blue-color: #0d6bb4; -->
+<!-- $pill-color: #F2944B; -->
+<!-- $grey-color: #555452; -->
+
 </style>
