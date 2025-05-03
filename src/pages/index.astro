@@ -1,10 +1,74 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	Hello
+	<section class="intro">
+    <div class="welcome">
+      <h1>Welcome to my website!</h1>
+			<p>
+				I'm Ben Vinnick, a recent Computer Science graduate, based in Vancouver, BC. With hands-on experience as a Software Developer Intern and a Teaching Assistant at the University of British Columbia, I’ve gained the skills to be an impactful contributor no matter the team I’m on.
+			</p>
+			<p>
+				At TAIT, I worked on both frontend and backend systems, creating user-friendly dashboards, optimizing media storage, and enhancing asset management workflows. As a Teaching Assistant, I guided hundreds of students through foundational programming concepts, helping them build confidence in topics like recursion, graph traversal, and debugging.
+			</p>
+			<p>
+				After just completing Bachelor of Science in Computer Science, I’m continuing to work toward becoming a Software Architect, eager to design scalable systems and deliver meaningful, innovative solutions.</p>
+			</p>
+      <p>
+			To read more about me you can download my resume or see a prettier version of it <a href="/resume">here</a>.
+      </p>
+    </div>
+    <img src="/lucy.webp">
+  </section>
 </Layout>
+
+<style>
+.intro {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 90vh;
+  margin: 0 auto;
+
+  .welcome {
+    width: 100%;
+  }
+
+  h1 {
+    color: #050609;
+    text-align: center;
+  }
+
+  a {
+    color: #0d6bb4;
+  }
+
+  a:hover {
+      color: #F2944B;
+  }
+
+  img {
+    border-radius: 50%;
+    border: 4px solid #F2944B;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 50%;
+    margin: 20px 0;
+  }
+}
+
+@media only screen and (min-width:800px) {
+  .intro {
+    width: 75%;
+
+    .welcome {
+      width: 60%;
+    }
+
+    img {
+      width: 25%;
+    }
+  }
+}
+</style>
