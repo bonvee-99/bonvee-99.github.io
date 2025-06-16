@@ -31,13 +31,8 @@ export const resumeObj = {
       "highlights": [
         "Developed a frontend dashboard using Vue to allow users to monitor key metrics within their connected devices",
         "Facilitated dynamic schema relationships within the backend, empowering users to effortlessly create and manage intricate content structures by referencing one schema from another",
-        "Implemented queries and mutations for the GraphQL API to support a new device enrollment system",
-        "Designed a YAML parser to validate user input and provide guidance for precise data mapping",
-        "Developed a validation tool with TypeScript to maintain backward compatibility of payloads sent to 3rd-party devices",
-        "Implemented unit tests for GraphQL queries and mutations using Mocha, Chai, and Sinon",
         "Deployed an image resize proxy using Docker, Nginx, and GKE to reduce service strain and optimize page load times",
-        "Developed payload analytics feature with GCP Cloud Functions and Pub/Sub to track payload latency across services",
-        "Deployed analytics feature with Terraform and connected it to Datadog for streamlined monitoring and analysis"
+        "Developed analytics feature with GCP Cloud Functions and Pub/Sub to track payload latency across services",
       ]
     },
     {
