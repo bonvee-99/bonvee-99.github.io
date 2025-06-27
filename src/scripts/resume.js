@@ -11,7 +11,7 @@ export const resumeObj = {
   "workExperience": [
     {
       "company": "TAIT",
-      "location": "Montreal, Quebec",
+      "location": "Vancouver, BC (Remote)",
       "title": "Software Developer Intern",
       "startDate": "May 2024",
       "endDate": "Aug 2024",
@@ -24,7 +24,7 @@ export const resumeObj = {
     },
     {
       "company": "TAIT",
-      "location": "Montreal, Quebec",
+      "location": "Vancouver, BC (Remote)",
       "title": "Software Developer Intern",
       "startDate": "July 2022",
       "endDate": "Aug 2023",
