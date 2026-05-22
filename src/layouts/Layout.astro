@@ -1,6 +1,5 @@
 ---
 import Navigation from '../components/Navigation.astro';
-import Footer from '../components/Footer.astro';
 ---
 <!doctype html>
 <html lang="en">
@@ -13,33 +12,91 @@ import Footer from '../components/Footer.astro';
 		<meta property="og:title" content="Ben Vinnick – Portfolio" />
 		<meta property="og:description" content="Explore the work and experience of Ben Vinnick, full-stack developer." />
 		<meta property="og:url" content="https://benvinnick.com" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
 		<title>Ben Vinnick</title>
 	</head>
 	<body>
+		<div class="bg-grain"></div>
 		<Navigation />
-
-		<slot />
-		<Footer />
+		<main>
+			<slot />
+		</main>
 	</body>
 </html>
 
-<style>
-body {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style is:global>
+:root {
+  --bg: #FAF9F6;
+  --bg-soft: #f3f1ea;
+  --text: #1a1a1a;
+  --muted: #6b6963;
+  --accent: #F2944B;
+  --accent-soft: #fde7d2;
+  --link: #0d6bb4;
+  --border: rgba(10, 10, 10, 0.08);
+  --shadow-sm: 0 1px 2px rgba(10, 10, 10, 0.04), 0 2px 6px rgba(10, 10, 10, 0.04);
+  --shadow-md: 0 2px 8px rgba(10, 10, 10, 0.06), 0 8px 24px rgba(10, 10, 10, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
-	background-color: #FAF9F6;
-  color: #050609;
 }
-<!-- $terminal-font-size: 18px; -->
-<!-- $bg-color: #FAF9F6; -->
-<!-- $bg-nav: rgba(250, 249, 246, 0.9); -->
-<!-- $text-color: #050609; -->
-<!-- $blue-color: #0d6bb4; -->
-<!-- $pill-color: #F2944B; -->
-<!-- $grey-color: #555452; -->
 
+body {
+  font-family: 'Inter', system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Fraunces', Georgia, serif;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.bg-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(242, 148, 75, 0.10), transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, rgba(13, 107, 180, 0.07), transparent 60%);
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text);
+}
 </style>
