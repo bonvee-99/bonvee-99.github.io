@@ -1,8 +1,11 @@
 ---
 ---
 <nav>
-	<a href="/">Home</a>
-	<a href="/resume">Experience</a>
+	<div class="nav-inner">
+		<a href="/">Home</a>
+		<a href="/resume">Experience</a>
+		<a href="/blog">Blog</a>
+	</div>
 </nav>
 
 <style>
@@ -11,19 +14,49 @@ nav {
 	top: 0;
 	width: 100%;
 	z-index: 1000;
-	padding: 20px;
-	text-align: center;
-	background-color: #ececeb;
-	box-sizing: border-box;
+	background-color: var(--bg);
+	border-bottom: 1px solid var(--border);
+}
 
-	a {
-		font-size: 20px;
-		margin: 0 10px;
-		color: #0d6bb4;
-	}
+.nav-inner {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 20px 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 32px;
+}
 
-	a:hover {
-		color: #F2944B;
-	}
+.nav-inner a {
+	font-size: 15px;
+	font-weight: 500;
+	color: var(--text);
+	position: relative;
+	padding: 4px 0;
+}
+
+.nav-inner a::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -2px;
+	height: 2px;
+	background: var(--accent);
+	transform: scaleX(0);
+	transform-origin: center;
+	transition: transform 0.2s ease;
+}
+
+.nav-inner a:hover,
+.nav-inner a:focus-visible {
+	color: var(--text);
+	outline: none;
+}
+
+.nav-inner a:hover::after,
+.nav-inner a:focus-visible::after {
+	transform: scaleX(1);
 }
 </style>

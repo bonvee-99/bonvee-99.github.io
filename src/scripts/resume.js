@@ -1,6 +1,6 @@
 export const resumeObj = {
   name: "Ben Vinnick",
-  location: "Vancouver, BC",
+  location: "Toronto, ON",
   phone: "(604)-506-6024",
   email: "benvinnick@gmail.com",
   links: {
@@ -20,7 +20,7 @@ export const resumeObj = {
     {
       company: "CleanBill",
       location: "Vancouver, BC",
-      title: "Software Developer (Contract, Part-time)",
+      title: "Software Developer",
       startDate: "April 2025",
       endDate: "Aug 2025",
       highlights: [

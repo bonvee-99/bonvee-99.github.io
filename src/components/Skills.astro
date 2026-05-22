@@ -4,8 +4,8 @@ const { skills } = Astro.props;
 <section class="skills-container">
   {
     skills && Object.entries(skills).map(([key, value]) => (
-      <div>
-        <h2>{key}</h2>
+      <div class="group">
+        <h3>{key}</h3>
         <ul>
           {
             value.map((skill) => (
@@ -20,34 +20,57 @@ const { skills } = Astro.props;
 
 <style>
 .skills-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
 }
 
-.skills-container div {
-  width: 50%;
+@media only screen and (min-width: 600px) {
+  .skills-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.skills-container h2 {
-  text-align: center;
+.group {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.group h3 {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+  color: var(--muted);
 }
 
 ul {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  list-style-type: none;
+  list-style: none;
   padding: 0;
+  margin: 0;
+  gap: 6px;
 }
 
 li {
-  color: #faf9f6;
-  background-color: #f2944b;
-  border-radius: 10px;
-  padding: 5px 10px;
-  margin-right: 4px;
-  margin-bottom: 8px;
-  text-align: center;
+  color: var(--text);
+  background-color: var(--accent-soft);
+  border: 1px solid rgba(242, 148, 75, 0.25);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+li:hover {
+  background-color: var(--accent);
+  color: white;
+  transform: translateY(-1px);
 }
 </style>

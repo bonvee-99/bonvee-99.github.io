@@ -1,40 +1,86 @@
 ---
 const { experience } = Astro.props;
 ---
-<section>
-  <h2>{experience.title}</h2>
-  <h5>@{experience.company}</h5>
-  <span class="date">
-    {experience.startDate + ' - ' + experience.endDate + ' | ' + experience.location}
-  </span>
+<section class="card">
+  <div class="header">
+    <div>
+      <h3>{experience.title}</h3>
+      <p class="company">{experience.company}</p>
+    </div>
+    <span class="date">{experience.startDate} – {experience.endDate}</span>
+  </div>
+  <p class="location">{experience.location}</p>
   <ul>
     {
       experience.highlights.map((highlight) => (
-	<li>
-	  {highlight}
-	</li>
+        <li>{highlight}</li>
       ))
     }
   </ul>
 </section>
 
 <style>
-h2 {
-  margin-bottom: 0;
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 24px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-h5 {
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(242, 148, 75, 0.4);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+}
+
+h3 {
   margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.company {
+  margin: 2px 0 0;
+  font-weight: 500;
+  color: var(--link);
+  font-size: 0.95rem;
 }
 
 .date {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.location {
+  margin: 6px 0 12px;
+  font-size: 0.85rem;
+  color: var(--muted);
   font-style: italic;
-  font-size: 14px;
-  color: #555452;
 }
 
 ul {
-  padding: 5px 15px 15px 15px;
-  margin-top: 0;
+  margin: 0;
+  padding-left: 18px;
+}
+
+li {
+  margin-bottom: 6px;
+  line-height: 1.55;
+}
+
+li:last-child {
+  margin-bottom: 0;
 }
 </style>

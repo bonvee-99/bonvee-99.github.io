@@ -1,53 +1,97 @@
 ---
 const { project } = Astro.props;
-
-const isGHLink = project.link.includes('github');
-
-import GithubIcon from './GithubIcon.astro';
 ---
-<section>
-  {
-    !isGHLink ? (
-      <h2 class="web-link">
-	<a :href="project.link">{project.title}</a>
-      </h2>
-    ) : (
-      <h2>
-	{project.title}
-      </h2>
-    )
-  }
-  <span class="date">
-    {project.date}
-  </span>
+<section class="card">
+  <div class="header">
+    <h3>
+      <a href={project.link} target="_blank" rel="noopener noreferrer">
+        {project.title}
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+    </h3>
+    <span class="date">{project.date}</span>
+  </div>
   <ul>
     {
       project.highlights.map((highlight) => (
-	<li>
-	  {highlight}
-	</li>
+        <li>{highlight}</li>
       ))
     }
   </ul>
 </section>
 
 <style>
-h2 {
-  margin-bottom: 0;
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 24px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(242, 148, 75, 0.4);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+h3 a {
+  color: var(--text);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+h3 a:hover {
+  color: var(--accent);
+}
+
+.arrow {
+  font-size: 0.9em;
+  color: var(--muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+  display: inline-block;
+}
+
+h3 a:hover .arrow {
+  color: var(--accent);
+  transform: translate(2px, -2px);
 }
 
 .date {
-  font-style: italic;
-  font-size: 14px;
-  color: #555452;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 ul {
-  padding: 5px 15px 15px 15px;
-  margin-top: 0;
+  margin: 0;
+  padding-left: 18px;
 }
 
-.web-link > a:hover {
-  color: #f2944b;
+li {
+  margin-bottom: 6px;
+  line-height: 1.55;
+}
+
+li:last-child {
+  margin-bottom: 0;
 }
 </style>
