@@ -2,7 +2,7 @@
 title: "Hello, world"
 description: "A first post to test the blog setup."
 pubDate: 2026-05-22
-draft: false
+draft: true
 ---
 
 This is the first post. Markdown works as expected — **bold**, *italic*, `inline code`, [links](https://benvinnick.com), and so on.
