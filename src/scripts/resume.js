@@ -70,22 +70,12 @@ export const resumeObj = {
   projects: [
     {
       title: "Sports Macros",
-      link: "https://bonvee-nhl-macros.s3.us-west-1.amazonaws.com/dist/index.html",
+      link: "https://bonvee-nhl-macros.s3.us-west-1.amazonaws.com/index.html",
       date: "Oct 2021 - Present",
       highlights: [
         "Independently created a web application with TypeScript, tailored for media professionals",
         "Facilitates effortless generation of macros, optimizing the media captioning workflow within Photo Mechanic",
         "Utilized by professional NHL photographers during every Vancouver Canucks home game for the past 3 seasons",
-      ],
-    },
-    {
-      title: "DLS",
-      link: "https://github.com/bonvee-99/dls",
-      date: "July 2023",
-      highlights: [
-        "Co-created a Rust CLI designed for secure secret sharing among developers over WebSockets",
-        "Implemented end-to-end encryption using RSA public/private key pairs",
-        "Introduced the ability for users to join rooms through dynamically generated URLs",
       ],
     },
   ],
