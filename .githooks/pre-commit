@@ -1,0 +1,18 @@
+#!/bin/sh
+# Auto-regenerate resume artifacts when resume.md is part of a commit.
+#
+# When resume.md is staged, this runs `npm run resume` (regenerating
+# src/scripts/resume.js and public/resume.pdf) and stages the results, so the
+# generated files always match resume.md in the same commit.
+#
+# Enabled via:  git config core.hooksPath .githooks   (already set locally).
+
+# Only do work when resume.md is actually staged.
+if git diff --cached --name-only | grep -q '^resume\.md$'; then
+  echo "resume.md changed — regenerating resume.js + resume.pdf..."
+  if ! npm run resume --silent; then
+    echo "✗ resume generation failed — aborting commit." >&2
+    exit 1
+  fi
+  git add src/scripts/resume.js public/resume.pdf
+fi

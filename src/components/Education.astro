@@ -10,7 +10,7 @@ const { education } = Astro.props;
     <span class="date">{education.startDate} – {education.endDate}</span>
   </div>
   <p class="location">{education.location}</p>
-  <p class="gpa"><span>Cumulative average:</span> {education.gpa}</p>
+  {education.gpa && <p class="gpa"><span>Cumulative average:</span> {education.gpa}</p>}
 </section>
 
 <style>
