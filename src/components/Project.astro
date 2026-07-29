@@ -2,7 +2,7 @@
 import { inline } from '../scripts/inline.js';
 const { project } = Astro.props;
 ---
-<section class="card">
+<section class="card" data-reveal>
   <div class="header">
     <h3>
       {project.link ? (
@@ -27,7 +27,7 @@ const { project } = Astro.props;
 
 <style>
 .card {
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 22px 24px;

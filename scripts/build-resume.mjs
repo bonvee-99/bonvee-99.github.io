@@ -181,22 +181,22 @@ function buildHtml(r) {
 
   return `<!doctype html><html><head><meta charset="utf-8"><style>
     * { box-sizing: border-box; }
-    body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #111; font-size: 9.6pt; line-height: 1.28; margin: 0; }
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #111; font-size: 9.8pt; line-height: 1.29; margin: 0; }
     a { color: #1a4d8f; text-decoration: none; }
     strong { font-weight: 700; }
-    .name { font-size: 16pt; font-weight: 700; margin: 0 0 1px; }
-    .contact { color: #333; }
+    .name { font-size: 16pt; font-weight: 700; margin: 0 0 2px; }
+    .contact { color: #333; margin-top: 1px; }
     .contact a { color: #1a4d8f; }
-    h2 { font-size: 9.6pt; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 1px; margin: 10px 0 5px; }
-    .entry { margin-bottom: 7px; page-break-inside: avoid; }
+    h2 { font-size: 9.8pt; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 2px; margin: 10px 0 5px; }
+    .entry { margin-bottom: 6px; page-break-inside: avoid; }
     .row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
     .left { text-align: left; }
     .right { text-align: right; white-space: nowrap; color: #333; }
     .b { font-weight: 700; }
     .cap { text-transform: capitalize; }
-    ul { margin: 2px 0 0; padding-left: 16px; }
-    li { margin-bottom: 1px; }
-    .edu-line, .skill-line { margin-top: 1px; }
+    ul { margin: 3px 0 0; padding-left: 17px; }
+    li { margin-bottom: 3px; }
+    .edu-line, .skill-line { margin-top: 2px; }
   </style></head><body>
     <div class="name">${esc(r.name)}</div>
     <div class="contact">${[esc(r.location), esc(r.phone), esc(r.email)].filter(Boolean).join(' | ')}</div>

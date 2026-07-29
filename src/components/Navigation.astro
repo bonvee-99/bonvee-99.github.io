@@ -1,10 +1,32 @@
 ---
+const path = Astro.url.pathname;
+const links = [
+	{ href: '/', label: 'Home' },
+	{ href: '/resume', label: 'Experience' },
+	{ href: '/blog', label: 'Blog' },
+];
+const isActive = (href: string) =>
+	href === '/' ? path === '/' : path === href || path.startsWith(href + '/');
 ---
 <nav>
 	<div class="nav-inner">
-		<a href="/">Home</a>
-		<a href="/resume">Experience</a>
-		<a href="/blog">Blog</a>
+		<div class="nav-links">
+			{
+				links.map((link) => (
+					<a
+						href={link.href}
+						class={isActive(link.href) ? 'active' : undefined}
+						aria-current={isActive(link.href) ? 'page' : undefined}
+					>
+						{link.label}
+					</a>
+				))
+			}
+		</div>
+		<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+			<svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+			<svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+		</button>
 	</div>
 </nav>
 
@@ -19,16 +41,22 @@ nav {
 }
 
 .nav-inner {
+	position: relative;
 	max-width: 1100px;
 	margin: 0 auto;
 	padding: 20px 24px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.nav-links {
+	display: flex;
+	align-items: center;
 	gap: 32px;
 }
 
-.nav-inner a {
+.nav-links a {
 	font-size: 15px;
 	font-weight: 500;
 	color: var(--text);
@@ -36,7 +64,7 @@ nav {
 	padding: 4px 0;
 }
 
-.nav-inner a::after {
+.nav-links a::after {
 	content: '';
 	position: absolute;
 	left: 0;
@@ -49,14 +77,79 @@ nav {
 	transition: transform 0.2s ease;
 }
 
-.nav-inner a:hover,
-.nav-inner a:focus-visible {
+.nav-links a:hover,
+.nav-links a:focus-visible {
 	color: var(--text);
 	outline: none;
 }
 
-.nav-inner a:hover::after,
-.nav-inner a:focus-visible::after {
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after,
+.nav-links a.active::after {
 	transform: scaleX(1);
 }
+
+.nav-links a.active {
+	color: var(--text);
+	font-weight: 600;
+}
+
+.theme-toggle {
+	position: absolute;
+	right: 24px;
+	top: 50%;
+	transform: translateY(-50%);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	border: 1px solid var(--border);
+	background: var(--surface);
+	color: var(--muted);
+	cursor: pointer;
+	transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+	color: var(--accent);
+	border-color: var(--accent);
+	transform: translateY(-50%) scale(1.05);
+}
+
+.theme-toggle:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+
+.icon-sun {
+	display: none;
+}
+
+:global(html[data-theme='dark']) .icon-sun {
+	display: block;
+}
+
+:global(html[data-theme='dark']) .icon-moon {
+	display: none;
+}
+
+@media only screen and (max-width: 520px) {
+	.theme-toggle {
+		right: 16px;
+	}
+}
 </style>
+
+<script>
+	const btn = document.getElementById('theme-toggle');
+	btn?.addEventListener('click', () => {
+		const isDark = document.documentElement.dataset.theme === 'dark';
+		const next = isDark ? 'light' : 'dark';
+		document.documentElement.dataset.theme = next;
+		try {
+			localStorage.setItem('theme', next);
+		} catch (e) {}
+	});
+</script>

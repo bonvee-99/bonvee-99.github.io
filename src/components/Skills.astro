@@ -1,7 +1,7 @@
 ---
 const { skills } = Astro.props;
 ---
-<section class="skills-container">
+<section class="skills-container" data-reveal>
   {
     skills && Object.entries(skills).map(([key, value]) => (
       <div class="group">
@@ -32,7 +32,7 @@ const { skills } = Astro.props;
 }
 
 .group {
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 18px 20px;
