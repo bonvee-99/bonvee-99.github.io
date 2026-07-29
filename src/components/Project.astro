@@ -1,20 +1,25 @@
 ---
+import { inline } from '../scripts/inline.js';
 const { project } = Astro.props;
 ---
 <section class="card">
   <div class="header">
     <h3>
-      <a href={project.link} target="_blank" rel="noopener noreferrer">
-        {project.title}
-        <span class="arrow" aria-hidden="true">↗</span>
-      </a>
+      {project.link ? (
+        <a href={project.link} target="_blank" rel="noopener noreferrer">
+          {project.title}
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      ) : (
+        project.title
+      )}
     </h3>
     <span class="date">{project.date}</span>
   </div>
   <ul>
     {
       project.highlights.map((highlight) => (
-        <li>{highlight}</li>
+        <li set:html={inline(highlight)} />
       ))
     }
   </ul>

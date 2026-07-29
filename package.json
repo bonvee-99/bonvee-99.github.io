@@ -4,12 +4,20 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "prepare": "git config core.hooksPath .githooks || true",
+    "prebuild": "node scripts/build-resume.mjs --js-only",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "resume": "node scripts/build-resume.mjs",
+    "ats": "node scripts/ats-check.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.3.1",
     "astro": "^5.7.10"
+  },
+  "devDependencies": {
+    "pdfjs-dist": "^6.2.108",
+    "playwright": "^1.62.0"
   }
 }
