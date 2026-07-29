@@ -36,7 +36,6 @@
 
 ### Veeva Systems | Toronto, ON
 **Associate Software Engineer** | Sept 2025 – Present
-- Build integrations connecting Safety to other internal products, handling data transformation, deduplication, and routing between systems; also contributed to job scheduling infrastructure
 - Refactoring a **Spring Boot microservice** toward single responsibility, moving business logic out so it purely handles AS2 transmissions
 - Consolidated ownership of a cross-team data mapping, scoping most changes to a single team
 - Redesigned how connections are configured, migrating from a single shared profile to per-connection profiles via a custom copy action and data migration
