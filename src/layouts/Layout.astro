@@ -6,6 +6,19 @@ import Navigation from '../components/Navigation.astro';
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<script is:inline>
+			// Set theme + js class before paint to avoid a flash.
+			(function () {
+				try {
+					var t = localStorage.getItem('theme');
+					if (t !== 'light' && t !== 'dark') {
+						t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+					}
+					document.documentElement.dataset.theme = t;
+				} catch (e) {}
+				document.documentElement.classList.add('js');
+			})();
+		</script>
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content="Software engineer portfolio of Ben Vinnick featuring full-stack web development projects and experience.">
@@ -23,6 +36,27 @@ import Navigation from '../components/Navigation.astro';
 		<main>
 			<slot />
 		</main>
+		<script>
+			// Reveal elements as they scroll into view (progressive enhancement).
+			const els = document.querySelectorAll('[data-reveal]');
+			const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			if (!reduce && 'IntersectionObserver' in window) {
+				const io = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (entry.isIntersecting) {
+								entry.target.classList.add('is-visible');
+								io.unobserve(entry.target);
+							}
+						}
+					},
+					{ rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+				);
+				els.forEach((el) => io.observe(el));
+			} else {
+				els.forEach((el) => el.classList.add('is-visible'));
+			}
+		</script>
 	</body>
 </html>
 
@@ -30,6 +64,7 @@ import Navigation from '../components/Navigation.astro';
 :root {
   --bg: #FAF9F6;
   --bg-soft: #f3f1ea;
+  --surface: #ffffff;
   --text: #1a1a1a;
   --muted: #6b6963;
   --accent: #F2944B;
@@ -38,6 +73,24 @@ import Navigation from '../components/Navigation.astro';
   --border: rgba(10, 10, 10, 0.08);
   --shadow-sm: 0 1px 2px rgba(10, 10, 10, 0.04), 0 2px 6px rgba(10, 10, 10, 0.04);
   --shadow-md: 0 2px 8px rgba(10, 10, 10, 0.06), 0 8px 24px rgba(10, 10, 10, 0.06);
+  --grain-1: rgba(242, 148, 75, 0.10);
+  --grain-2: rgba(13, 107, 180, 0.07);
+}
+
+:root[data-theme="dark"] {
+  --bg: #1a1815;
+  --bg-soft: #232019;
+  --surface: #262320;
+  --text: #f3efe8;
+  --muted: #a8a196;
+  --accent: #f2944b;
+  --accent-soft: rgba(242, 148, 75, 0.16);
+  --link: #6bb2ec;
+  --border: rgba(255, 255, 255, 0.10);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.30), 0 2px 6px rgba(0, 0, 0, 0.24);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.36), 0 10px 28px rgba(0, 0, 0, 0.40);
+  --grain-1: rgba(242, 148, 75, 0.14);
+  --grain-2: rgba(13, 107, 180, 0.12);
 }
 
 * {
@@ -62,6 +115,7 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5 {
@@ -76,8 +130,8 @@ h1, h2, h3, h4, h5 {
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(242, 148, 75, 0.10), transparent 60%),
-    radial-gradient(900px 500px at 110% 10%, rgba(13, 107, 180, 0.07), transparent 60%);
+    radial-gradient(1200px 600px at 10% -10%, var(--grain-1), transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, var(--grain-2), transparent 60%);
 }
 
 main {
@@ -98,5 +152,26 @@ a:hover {
 ::selection {
   background: var(--accent-soft);
   color: var(--text);
+}
+
+/* Smooth theme switch on surfaces */
+.card,
+.group,
+nav {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease,
+    transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Scroll-reveal (only when JS is on, motion allowed) */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  html.js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
 }
 </style>

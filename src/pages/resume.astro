@@ -16,7 +16,7 @@ import { resumeObj } from '../scripts/resume.js';
 		</header>
 
 		<section class="section">
-			<h2 class="section-title">Experience</h2>
+			<h2 class="section-title" data-reveal>Experience</h2>
 			<div class="stack">
 				{
 					resumeObj.workExperience.map((exp) => (
@@ -27,7 +27,7 @@ import { resumeObj } from '../scripts/resume.js';
 		</section>
 
 		<section class="section">
-			<h2 class="section-title">Projects</h2>
+			<h2 class="section-title" data-reveal>Projects</h2>
 			<div class="stack">
 				{
 					resumeObj.projects.map((proj) => (
@@ -38,14 +38,14 @@ import { resumeObj } from '../scripts/resume.js';
 		</section>
 
 		<section class="section">
-			<h2 class="section-title">Education</h2>
+			<h2 class="section-title" data-reveal>Education</h2>
 			<div class="stack">
 				<Education education={resumeObj.education}/>
 			</div>
 		</section>
 
 		<section class="section">
-			<h2 class="section-title">Skills</h2>
+			<h2 class="section-title" data-reveal>Skills</h2>
 			<Skills skills={resumeObj.skills}/>
 		</section>
 	</div>
