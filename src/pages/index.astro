@@ -12,7 +12,7 @@ import Layout from '../layouts/Layout.astro';
         I'm an Associate Software Engineer at <a href="https://veeva.com" target="_blank" rel="noopener noreferrer">Veeva Systems</a> on the <a href="https://veeva.com/products/veeva-safety" target="_blank" rel="noopener noreferrer">Vault Safety</a> Core team. I graduated from UBC in 2025 with a degree in Computer Science.
       </p>
       <p class="bio">
-        Read more by <a href="/resume.pdf" download>downloading my resume</a> or <a href="/resume">browsing here</a>.
+        Read more by <a href="/resume.pdf" target="_blank" rel="noopener">viewing my resume</a> or <a href="/resume">browsing here</a>.
       </p>
 
       <div class="socials">
@@ -41,14 +41,17 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
 .intro {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 64px 24px 80px;
+  max-width: 1040px;
+  margin: 40px auto;
+  padding: 40px 28px 44px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: var(--shadow-md);
   display: grid;
   grid-template-columns: 1fr;
   gap: 40px;
   align-items: center;
-  min-height: 80vh;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -79,14 +82,25 @@ import Layout from '../layouts/Layout.astro';
 }
 
 h1 {
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
-  margin: 0 0 16px;
+  font-size: clamp(2.4rem, 5.5vw, 3.7rem);
+  margin: 0 0 18px;
   font-weight: 700;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  margin: 18px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
 }
 
 .tagline {
   font-size: 1.15rem;
-  color: var(--muted);
+  color: var(--text);
+  opacity: 0.78;
   margin: 0 0 28px;
   font-weight: 500;
 }
@@ -116,7 +130,7 @@ h1 {
   border-radius: 50%;
   color: var(--muted);
   border: 1px solid var(--border);
-  background: var(--surface);
+  background: var(--bg);
   transition: all 0.2s ease;
 }
 
@@ -185,6 +199,8 @@ h1 {
   .intro {
     grid-template-columns: 1.4fr 1fr;
     gap: 64px;
+    margin: 56px auto;
+    padding: 60px 60px 64px;
   }
 
   .welcome {
@@ -192,6 +208,11 @@ h1 {
   }
 
   .bio {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  h1::after {
     margin-left: 0;
     margin-right: 0;
   }

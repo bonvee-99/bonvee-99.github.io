@@ -11,8 +11,8 @@ import Navigation from '../components/Navigation.astro';
 			(function () {
 				try {
 					var t = localStorage.getItem('theme');
-					if (t !== 'light' && t !== 'dark') {
-						t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+					if (t !== 'light' && t !== 'coffee' && t !== 'dark') {
+						t = 'light'; // default to light; respect an explicit user toggle
 					}
 					document.documentElement.dataset.theme = t;
 				} catch (e) {}
@@ -75,6 +75,22 @@ import Navigation from '../components/Navigation.astro';
   --shadow-md: 0 2px 8px rgba(10, 10, 10, 0.06), 0 8px 24px rgba(10, 10, 10, 0.06);
   --grain-1: rgba(242, 148, 75, 0.10);
   --grain-2: rgba(13, 107, 180, 0.07);
+}
+
+:root[data-theme="coffee"] {
+  --bg: #e5d6bf;
+  --bg-soft: #dbc9ad;
+  --surface: #efe4d1;
+  --text: #3b2e21;
+  --muted: #7a6653;
+  --accent: #c4622e;
+  --accent-soft: rgba(196, 98, 46, 0.18);
+  --link: #0e6b63;
+  --border: rgba(59, 46, 33, 0.16);
+  --shadow-sm: 0 1px 2px rgba(59, 40, 20, 0.10), 0 2px 6px rgba(59, 40, 20, 0.08);
+  --shadow-md: 0 2px 8px rgba(59, 40, 20, 0.12), 0 8px 24px rgba(59, 40, 20, 0.12);
+  --grain-1: rgba(196, 98, 46, 0.12);
+  --grain-2: rgba(123, 74, 36, 0.08);
 }
 
 :root[data-theme="dark"] {

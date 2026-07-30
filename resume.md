@@ -43,7 +43,7 @@
 ### CleanBill | Vancouver, BC
 **Software Developer (Contract, Part-Time)** | April 2025 – Aug 2025
 - Built an event-driven pipeline (**Inngest**, **AWS Textract**) to automate billing data extraction from ER visit summaries, **eliminating a manual triage step that scaled with intake volume (~1 hr/day)**
-- Designed a **linear-time shift-bucketing algorithm** to infer each document's billing shift from overlapping time windows
+- Designed a **bucketing algorithm** to infer each document's billing shift from overlapping time windows
 - Extended the parser to extract clinical notes based on OCR text-block geometry
 
 ### TAIT | Vancouver, BC (Remote)
