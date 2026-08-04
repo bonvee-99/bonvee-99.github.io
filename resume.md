@@ -64,12 +64,12 @@
 
 ## Projects
 
+### Loltest | https://github.com/bonvee-99/loltest | June 2026 – Present
+- Built a **Go microservice** game backend with concurrency-safe matchmaking and a load-test harness simulating thousands of concurrent players
+
 ### Sports Macros | https://sports-macros.benvinnick.com/ | Oct 2021 – Present
 - Facilitates effortless generation of macros, optimizing the media captioning workflow within Photo Mechanic
 - Utilized by professional NHL photographers during **every Vancouver Canucks home game for the past 5 seasons**
-
-### Loltest | https://github.com/bonvee-99/loltest | June 2026 – Present
-- Built a **Go microservice** game backend with concurrency-safe matchmaking and a load-test harness simulating thousands of concurrent players
 
 ## Education
 

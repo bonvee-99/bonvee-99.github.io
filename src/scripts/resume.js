@@ -73,20 +73,20 @@ export const resumeObj = {
   ],
   "projects": [
     {
+      "title": "Loltest",
+      "link": "https://github.com/bonvee-99/loltest",
+      "date": "June 2026 – Present",
+      "highlights": [
+        "Built a **Go microservice** game backend with concurrency-safe matchmaking and a load-test harness simulating thousands of concurrent players"
+      ]
+    },
+    {
       "title": "Sports Macros",
       "link": "https://sports-macros.benvinnick.com/",
       "date": "Oct 2021 – Present",
       "highlights": [
         "Facilitates effortless generation of macros, optimizing the media captioning workflow within Photo Mechanic",
         "Utilized by professional NHL photographers during **every Vancouver Canucks home game for the past 5 seasons**"
-      ]
-    },
-    {
-      "title": "Loltest",
-      "link": "https://github.com/bonvee-99/loltest",
-      "date": "June 2026 – Present",
-      "highlights": [
-        "Built a **Go microservice** game backend with concurrency-safe matchmaking and a load-test harness simulating thousands of concurrent players"
       ]
     }
   ],
