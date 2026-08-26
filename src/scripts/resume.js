@@ -103,6 +103,7 @@ export const resumeObj = {
   "skills": {
     "languages": [
       "Java",
+      "Python",
       "Go",
       "TypeScript",
       "JavaScript",

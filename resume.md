@@ -77,6 +77,6 @@
 **Bachelor of Science, Computer Science** | Sept 2019 – April 2025
 
 ## Skills
-- Languages: Java, Go, TypeScript, JavaScript, Bash, SQL, NoSQL, GraphQL, HTML, CSS
+- Languages: Java, Python, Go, TypeScript, JavaScript, Bash, SQL, NoSQL, GraphQL, HTML, CSS
 - Frameworks: Node.js, React, Next.js, Vue.js, JUnit, Mocha, Chai
 - Other: Git, Docker, Kubernetes, GCP, AWS, Terraform, Jenkins, Datadog, Jira
