@@ -19,21 +19,21 @@ export const resumeObj = {
       "startDate": "Sept 2025",
       "endDate": "Present",
       "highlights": [
-        "Refactoring a **Spring Boot microservice** toward single responsibility, moving business logic out so it purely handles AS2 transmissions",
-        "Consolidated ownership of a cross-team data mapping, scoping most changes to a single team",
+        "Refactored a **Spring Boot microservice** toward single responsibility, moving business logic out so it purely handles AS2 transmissions",
+        "Migrated a cross-product data flow end to end, mapping inbound data into our domain model and creating inbox items through the owning team's service, removing a data layer that had exposed our internal structures across team boundaries",
         "Redesigned how connections are configured, migrating from a single shared profile to per-connection profiles via a custom copy action and data migration"
       ]
     },
     {
       "company": "CleanBill",
       "location": "Vancouver, BC",
-      "title": "Software Developer (Contract, Part-Time)",
+      "title": "Software Developer (Contract)",
       "startDate": "April 2025",
       "endDate": "Aug 2025",
       "highlights": [
         "Built an event-driven pipeline (**Inngest**, **AWS Textract**) to automate billing data extraction from ER visit summaries, **eliminating a manual triage step that scaled with intake volume (~1 hr/day)**",
         "Designed a **bucketing algorithm** to infer each document's billing shift from overlapping time windows",
-        "Extended the parser to extract clinical notes based on OCR text-block geometry"
+        "Extended a document parser to extract clinical notes based on OCR text-block geometry"
       ]
     },
     {
@@ -56,7 +56,7 @@ export const resumeObj = {
       "endDate": "Aug 2023",
       "highlights": [
         "Developed a frontend dashboard using **Vue** to allow users to monitor key metrics within their connected devices",
-        "Facilitated dynamic schema relationships, empowering users to effortlessly create and manage intricate content structures by referencing one schema from another"
+        "Built schema-to-schema references, letting users compose content models relationally instead of duplicating nested content"
       ]
     },
     {
