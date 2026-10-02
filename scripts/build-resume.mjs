@@ -196,7 +196,7 @@ function buildHtml(r) {
     .name { font-size: 16pt; font-weight: 700; margin: 0 0 2px; }
     .contact { color: #333; margin-top: 1px; }
     .contact a { color: #1a4d8f; }
-    h2 { font-size: 9.8pt; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 2px; margin: 10px 0 5px; }
+    h2 { font-size: 9.8pt; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 2px; margin: 15px 0 7px; }
     .entry { margin-bottom: 6px; page-break-inside: avoid; }
     .row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
     .left { text-align: left; }
