@@ -29,6 +29,11 @@ function splitDateRange(str) {
   return { startDate: start.trim(), endDate: end.trim() };
 }
 
+// A job may list several stints at one company: "Start – End, Start – End".
+function splitDateRanges(str) {
+  return str.split(',').map((r) => r.trim()).filter(Boolean).map(splitDateRange);
+}
+
 // ── Parse ────────────────────────────────────────────────────────────────────
 function parseResume(md) {
   const clean = md.replace(/<!--[\s\S]*?-->/g, ''); // drop HTML comments (format docs)
@@ -78,7 +83,7 @@ function parseResume(md) {
     if (line.startsWith('### ')) {
       const parts = line.slice(4).split('|').map((p) => p.trim());
       if (section === 'experience') {
-        current = { company: parts[0], location: parts[1] || '', title: '', startDate: '', endDate: '', highlights: [] };
+        current = { company: parts[0], location: parts[1] || '', title: '', dateRanges: [], highlights: [] };
         resume.workExperience.push(current);
       } else if (section === 'projects') {
         // "Title | link | date"  or  "Title | date"
@@ -97,9 +102,9 @@ function parseResume(md) {
     if (line.startsWith('**')) {
       const m = line.match(/^\*\*(.+?)\*\*\s*(?:\|\s*(.*))?$/);
       const title = (m ? m[1] : line.replace(/\*/g, '')).trim();
-      const { startDate, endDate } = splitDateRange(m && m[2] ? m[2] : '');
-      if (section === 'experience' && current) Object.assign(current, { title, startDate, endDate });
-      else if (section === 'education' && current) Object.assign(current, { degree: title, startDate, endDate });
+      const dateStr = m && m[2] ? m[2] : '';
+      if (section === 'experience' && current) Object.assign(current, { title, dateRanges: splitDateRanges(dateStr) });
+      else if (section === 'education' && current) Object.assign(current, { degree: title, ...splitDateRange(dateStr) });
       continue;
     }
 
@@ -153,7 +158,7 @@ function buildHtml(r) {
       (j) => `
       <div class="entry">
         <div class="row"><span class="left b">${esc(j.company)}</span><span class="right">${esc(j.location)}</span></div>
-        <div class="row"><span class="left">${esc(j.title)}</span><span class="right">${dates(j.startDate, j.endDate)}</span></div>
+        <div class="row"><span class="left">${esc(j.title)}</span><span class="right">${j.dateRanges.map((d) => dates(d.startDate, d.endDate)).join(', ')}</span></div>
         ${bullets(j.highlights)}
       </div>`
     )

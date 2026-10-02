@@ -8,7 +8,7 @@ const { experience } = Astro.props;
       <h3>{experience.title}</h3>
       <p class="company">{experience.company}</p>
     </div>
-    <span class="date">{experience.startDate} – {experience.endDate}</span>
+    <span class="date">{experience.dateRanges.map((d) => `${d.startDate} – ${d.endDate}`).join(', ')}</span>
   </div>
   <p class="location">{experience.location}</p>
   <ul>
