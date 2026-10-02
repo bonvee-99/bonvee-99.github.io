@@ -48,6 +48,13 @@ import { resumeObj } from '../scripts/resume.js';
 			<h2 class="section-title" data-reveal>Skills</h2>
 			<Skills skills={resumeObj.skills}/>
 		</section>
+
+		{resumeObj.interests.length > 0 && (
+			<section class="section">
+				<h2 class="section-title" data-reveal>Interests</h2>
+				<p class="interests" data-reveal>{resumeObj.interests.join(' · ')}</p>
+			</section>
+		)}
 	</div>
 </Layout>
 
@@ -95,6 +102,11 @@ import { resumeObj } from '../scripts/resume.js';
   width: 48px;
   height: 2px;
   background: var(--accent);
+}
+
+.interests {
+  margin: 0;
+  color: var(--muted);
 }
 
 .stack {

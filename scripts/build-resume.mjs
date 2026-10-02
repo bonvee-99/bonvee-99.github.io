@@ -49,6 +49,7 @@ function parseResume(md) {
     projects: [],
     education: {},
     skills: {},
+    interests: [],
   };
 
   const CONTACT_KEYS = new Set(['location', 'phone', 'email']);
@@ -68,6 +69,7 @@ function parseResume(md) {
         : name.startsWith('project') ? 'projects'
         : name.startsWith('education') ? 'education'
         : name.startsWith('skill') ? 'skills'
+        : name.startsWith('interest') ? 'interests'
         : 'unknown';
       current = null;
       continue;
@@ -119,6 +121,8 @@ function parseResume(md) {
       if (section === 'contact' && colon !== -1) {
         if (CONTACT_KEYS.has(key)) resume[key] = value;
         else if (LINK_KEYS.has(key)) resume.links[key] = value;
+      } else if (section === 'interests') {
+        resume.interests = csv(content);
       } else if (section === 'skills' && colon !== -1) {
         resume.skills[key] = csv(value);
       } else if (section === 'education' && current && colon !== -1) {
@@ -222,6 +226,7 @@ function buildHtml(r) {
 
     <h2>Technical Skills</h2>
     ${skills}
+    ${r.interests.length ? `<h2>Interests</h2><div class="skill-line">${esc(r.interests.join(', '))}</div>` : ''}
   </body></html>`;
 }
 
