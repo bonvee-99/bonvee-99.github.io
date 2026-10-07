@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "resume": "node scripts/build-resume.mjs",
-    "ats": "node scripts/ats-check.mjs"
+    "ats": "node scripts/ats-check.mjs",
+    "resume:preview": "node scripts/preview-resume.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.3.1",
