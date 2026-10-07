@@ -8,7 +8,7 @@
 # Enabled via:  git config core.hooksPath .githooks   (already set locally).
 
 # Only do work when resume.md is actually staged.
-if git diff --cached --name-only | grep -q '^resume\.md$'; then
+if git diff --cached --name-only --diff-filter=d | grep -q '^resume\.md$'; then
   echo "resume.md changed — regenerating resume.js + resume.pdf..."
   if ! npm run resume --silent; then
     echo "✗ resume generation failed — aborting commit." >&2

@@ -11,13 +11,15 @@ const { experience } = Astro.props;
     <span class="date">{experience.dateRanges.map((d) => `${d.startDate} – ${d.endDate}`).join(', ')}</span>
   </div>
   <p class="location">{experience.location}</p>
-  <ul>
-    {
-      experience.highlights.map((highlight) => (
-        <li set:html={inline(highlight)} />
-      ))
-    }
-  </ul>
+  {experience.highlights.length > 0 && (
+    <ul>
+      {
+        experience.highlights.map((highlight) => (
+          <li set:html={inline(highlight)} />
+        ))
+      }
+    </ul>
+  )}
 </section>
 
 <style>

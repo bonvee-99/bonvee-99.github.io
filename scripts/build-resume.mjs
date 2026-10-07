@@ -3,6 +3,8 @@
  * build-resume.mjs — turns resume.md (the single source of truth) into:
  *   • src/scripts/resume.js  (data the website imports)
  *   • public/resume.pdf      (the downloadable PDF)
+ *   • private/resume.pdf     (full PDF, only when the gitignored resume.private.md
+ *                             exists; its bullets are merged into matching jobs)
  *
  * Usage:
  *   node scripts/build-resume.mjs            # regenerate both JS + PDF
@@ -13,7 +15,7 @@
  *
  * See resume.md's top comment for the exact format the parser expects.
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { inline } from '../src/scripts/inline.js';
@@ -22,6 +24,8 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const MD_PATH = join(ROOT, 'resume.md');
 const JS_PATH = join(ROOT, 'src', 'scripts', 'resume.js');
 const PDF_PATH = join(ROOT, 'public', 'resume.pdf');
+const PRIVATE_MD_PATH = join(ROOT, 'resume.private.md');
+const PRIVATE_PDF_PATH = join(ROOT, 'private', 'resume.pdf');
 
 // A date range is "Start – End"; split on a dash (en/em/hyphen) surrounded by spaces.
 function splitDateRange(str) {
@@ -155,7 +159,7 @@ const displayUrl = (u = '') => u.replace(/^https?:\/\//, '').replace(/^www\./, '
 function buildHtml(r) {
   const dates = (a, b) => (b ? `${esc(a)} - ${esc(b)}` : esc(a));
   const normDash = (s = '') => esc(s.replace(/\s[–—-]\s/, ' - ')); // match the "-" used elsewhere
-  const bullets = (items) => `<ul>${items.map((h) => `<li>${inline(h)}</li>`).join('')}</ul>`;
+  const bullets = (items) => (items.length ? `<ul>${items.map((h) => `<li>${inline(h)}</li>`).join('')}</ul>` : '');
 
   const jobs = r.workExperience
     .map(
@@ -230,7 +234,7 @@ function buildHtml(r) {
   </body></html>`;
 }
 
-async function buildPdf(resume) {
+async function buildPdf(resume, pdfPath) {
   let chromium;
   try {
     ({ chromium } = await import('playwright'));
@@ -241,7 +245,7 @@ async function buildPdf(resume) {
   const page = await browser.newPage();
   await page.setContent(buildHtml(resume), { waitUntil: 'networkidle' });
   await page.pdf({
-    path: PDF_PATH,
+    path: pdfPath,
     format: 'Letter',
     printBackground: true,
     margin: { top: '0.5in', bottom: '0.5in', left: '0.6in', right: '0.6in' },
@@ -249,7 +253,19 @@ async function buildPdf(resume) {
   await browser.close();
 }
 
-export { parseResume, toResumeJs, buildHtml, buildPdf };
+// Returns a copy of `resume` with bullets from resume.private.md merged into the
+// jobs whose company matches. Private bullets replace any public ones.
+function withPrivateBullets(resume, privateMd) {
+  const merged = structuredClone(resume);
+  for (const priv of parseResume(privateMd).workExperience) {
+    const job = merged.workExperience.find((j) => j.company === priv.company);
+    if (!job) throw new Error(`resume.private.md: no job for company "${priv.company}" in resume.md`);
+    job.highlights = priv.highlights;
+  }
+  return merged;
+}
+
+export { parseResume, toResumeJs, buildHtml, buildPdf, withPrivateBullets };
 
 // ── Main (only when run directly, not when imported) ──────────────────────────
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -260,7 +276,13 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   console.log(`✓ wrote ${relative(ROOT, JS_PATH)}`);
 
   if (!jsOnly) {
-    await buildPdf(resume);
+    await buildPdf(resume, PDF_PATH);
     console.log(`✓ wrote ${relative(ROOT, PDF_PATH)}`);
+
+    if (existsSync(PRIVATE_MD_PATH)) {
+      mkdirSync(dirname(PRIVATE_PDF_PATH), { recursive: true });
+      await buildPdf(withPrivateBullets(resume, readFileSync(PRIVATE_MD_PATH, 'utf8')), PRIVATE_PDF_PATH);
+      console.log(`✓ wrote ${relative(ROOT, PRIVATE_PDF_PATH)} (full, gitignored)`);
+    }
   }
 }

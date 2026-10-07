@@ -22,3 +22,12 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# private resume content (full bullets for the current role)
+resume.private.md
+private/
+
+# resume is kept local only (still in git history)
+resume.md
+public/resume.pdf
+src/scripts/resume.js

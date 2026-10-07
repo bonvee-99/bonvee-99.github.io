@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "astro dev",
     "prepare": "git config core.hooksPath .githooks || true",
-    "prebuild": "node scripts/build-resume.mjs --js-only",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
